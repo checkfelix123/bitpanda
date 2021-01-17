@@ -1,0 +1,51 @@
+<app-loading-screen *ngIf="!isLoaded"></app-loading-screen>
+<mat-toolbar *ngIf="fiatAttributes.length > 0">
+  <span>Fiat</span>
+</mat-toolbar>
+
+<table *ngIf="fiatAttributes.length > 0 && isLoaded" [dataSource]="fiatAttributes" class="mat-elevation-z8" mat-table>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="currency">
+    <th *matHeaderCellDef mat-header-cell> currency</th>
+    <td *matCellDef="let fiat" mat-cell> {{fiat.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="sell amount">
+    <th *matHeaderCellDef mat-header-cell> sell amount</th>
+    <td *matCellDef="let fiat" mat-cell> {{fiat.default_sell_amount}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="transfer">
+    <th *matHeaderCellDef mat-header-cell> transfer</th>
+    <td *matCellDef="let fiat" mat-cell>
+        <span *ngIf="fiat.logo">
+            {{fiat.transfer_active}}
+        </span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="min_withdraw_euro">
+    <th *matHeaderCellDef mat-header-cell>minimum withdraw</th>
+    <td *matCellDef="let fiat" mat-cell>
+        <span *ngIf="fiat.logo">
+          {{fiat.min_withdraw_euro | currency:'EUR' : 'symbol' : '.0-2' }}
+        </span>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="min_deposit_euro">
+    <th *matHeaderCellDef mat-header-cell>minimum deposit</th>
+    <td *matCellDef="let fiat" mat-cell>
+      {{fiat.min_deposit_euro | currency:fiat.symbol : 'symbol' : '.0-' + fiat.precision   }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="logo">
+    <th *matHeaderCellDef mat-header-cell> logo</th>
+    <td *matCellDef="let fiat" mat-cell>
+        <span *ngIf="fiat.logo">
+            <img *ngIf="fiat.logo" alt="" src="{{fiat.logo}}">
+        </span>
+    </td>
+  </ng-container>
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>

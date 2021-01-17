@@ -1,0 +1,52 @@
+<!--<mat-spinner *ngIf=""></mat-spinner>-->
+
+<mat-toolbar>
+  <span>cryptocoins</span>
+</mat-toolbar>
+<app-loading-screen *ngIf="!isLoaded"></app-loading-screen>
+<table *ngIf="cryptocoinsAttribute.length > 0" [dataSource]="cryptocoinsAttribute" class="mat-elevation-z8" mat-table>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="currency">
+    <th *matHeaderCellDef mat-header-cell> currency</th>
+    <td *matCellDef="let cryptocoins" mat-cell> {{cryptocoins.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="sell amount">
+    <th *matHeaderCellDef mat-header-cell> sell amount</th>
+    <td *matCellDef="let cryptocoins" mat-cell> {{cryptocoins.default_sell_amount}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="transfer">
+    <th *matHeaderCellDef mat-header-cell> transfer</th>
+    <td *matCellDef="let cryptocoins" mat-cell>
+        <span *ngIf="cryptocoins.logo">
+            {{cryptocoins.transfer_active}}
+        </span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="min_withdraw_euro">
+    <th *matHeaderCellDef mat-header-cell>minimum withdraw</th>
+    <td *matCellDef="let cryptocoins" mat-cell>
+        <span *ngIf="cryptocoins.logo">
+          {{cryptocoins.min_withdraw_euro | currency:'EUR' : 'symbol' : '.0-2' }}
+        </span>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="min_deposit_euro">
+    <th *matHeaderCellDef mat-header-cell>minimum deposit</th>
+    <td *matCellDef="let cryptocoins" mat-cell>
+      {{cryptocoins.min_deposit_euro | currency:cryptocoins.symbol : 'symbol' : '.0-' + cryptocoins.precision   }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="logo">
+    <th *matHeaderCellDef mat-header-cell> logo</th>
+    <td *matCellDef="let cryptocoins" mat-cell>
+        <span *ngIf="cryptocoins.logo">
+            <img *ngIf="cryptocoins.logo" alt="" src="{{cryptocoins.logo}}">
+        </span>
+    </td>
+  </ng-container>
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>

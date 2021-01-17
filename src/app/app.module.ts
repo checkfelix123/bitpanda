@@ -12,8 +12,7 @@ import {DataModule} from './components/data/data.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
