@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-bitpanda": {
+      "hosting": {
+        "bitpanda": [
+          "angular-bitpanda"
+        ]
+      }
+    }
+  }
+}
