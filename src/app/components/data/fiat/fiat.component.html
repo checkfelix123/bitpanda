@@ -1,8 +1,7 @@
-<app-loading-screen *ngIf="!isLoaded"></app-loading-screen>
-<mat-toolbar *ngIf="fiatAttributes.length > 0">
+<mat-toolbar>
   <span>Fiat</span>
 </mat-toolbar>
-
+<app-loading-screen *ngIf="!isLoaded"></app-loading-screen>
 <table *ngIf="fiatAttributes.length > 0 && isLoaded" [dataSource]="fiatAttributes" class="mat-elevation-z8" mat-table>
 
   <!-- Position Column -->

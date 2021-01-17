@@ -69,6 +69,7 @@ export class DataService {
         for (const item of x.cryptocoins) {
           f.push(item.attributes);
         }
+        this.isLoaded.next(true);
       }
     );
     return f;

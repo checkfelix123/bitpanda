@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {MaterialModule} from './utils/material/material.module';
 import {HttpClientModule} from '@angular/common/http';
-import {DataModule} from './components/data/data.module';
 
 
 @NgModule({
@@ -18,8 +17,7 @@ import {DataModule} from './components/data/data.module';
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    HttpClientModule,
-    DataModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

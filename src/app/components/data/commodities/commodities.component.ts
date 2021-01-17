@@ -12,7 +12,7 @@ export class CommoditiesComponent implements OnInit {
 
   commoditiesAttribute: CommodityAttributes[] = [];
   isLoaded = false;
-  displayedColumns: string[] = ['currency', 'sell amount', 'logo', 'transfer', 'min_withdraw_euro', 'min_deposit_euro'];
+  displayedColumns: string[] = ['currency', 'sell amount', 'logo', 'transfer'];
 
   constructor(private dataService: DataService) {
   }

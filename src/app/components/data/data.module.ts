@@ -4,12 +4,31 @@ import {DataComponent} from './data.component';
 import {FiatComponent} from './fiat/fiat.component';
 import {MaterialModule} from '../../utils/material/material.module';
 import {CommoditiesComponent} from './commodities/commodities.component';
-import {AppRoutingModule} from '../../app-routing.module';
+
 import {IndexesComponent} from './indexes/indexes.component';
 import {CryptocoinsComponent} from './cryptocoins/cryptocoins.component';
 import {LoadingScreenComponent} from './loading-screen/loading-screen.component';
+import {RouterModule, Routes} from '@angular/router';
 
+const routes: Routes = [
+  {
+    path: 'fiat',
+    component: FiatComponent
+  },
+  {
+    path: 'commodities',
+    component: CommoditiesComponent
+  },
+  {
+    path: 'cryptocoins',
+    component: CryptocoinsComponent
+  },
+  {
+    path: 'indexes',
+    component: CryptocoinsComponent
+  },
 
+];
 @NgModule({
   declarations: [
     DataComponent,
@@ -22,11 +41,8 @@ import {LoadingScreenComponent} from './loading-screen/loading-screen.component'
   imports: [
     CommonModule,
     MaterialModule,
-    AppRoutingModule,
+    RouterModule.forChild(routes)
 
-  ],
-  exports: [
-    LoadingScreenComponent
   ]
 })
 export class DataModule {

@@ -11,13 +11,13 @@ export class CryptocoinsComponent implements OnInit {
 
   cryptocoinsAttribute: CommodityAttributes[] = [];
   isLoaded = false;
-  displayedColumns: string[] = ['currency', 'sell amount', 'logo', 'transfer', 'min_withdraw_euro', 'min_deposit_euro'];
+  displayedColumns: string[] = ['currency', 'sell amount', 'logo', 'transfer'];
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
-    this.cryptocoinsAttribute = this.dataService.getCommodities();
+    this.cryptocoinsAttribute = this.dataService.getCryptocoins();
     this.dataService.getIsLoaded().subscribe((loaded) => {
       this.isLoaded = loaded;
     });

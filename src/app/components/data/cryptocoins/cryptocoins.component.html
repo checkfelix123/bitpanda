@@ -24,21 +24,6 @@
         </span>
     </td>
   </ng-container>
-
-  <ng-container matColumnDef="min_withdraw_euro">
-    <th *matHeaderCellDef mat-header-cell>minimum withdraw</th>
-    <td *matCellDef="let cryptocoins" mat-cell>
-        <span *ngIf="cryptocoins.logo">
-          {{cryptocoins.min_withdraw_euro | currency:'EUR' : 'symbol' : '.0-2' }}
-        </span>
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="min_deposit_euro">
-    <th *matHeaderCellDef mat-header-cell>minimum deposit</th>
-    <td *matCellDef="let cryptocoins" mat-cell>
-      {{cryptocoins.min_deposit_euro | currency:cryptocoins.symbol : 'symbol' : '.0-' + cryptocoins.precision   }}
-    </td>
-  </ng-container>
   <ng-container matColumnDef="logo">
     <th *matHeaderCellDef mat-header-cell> logo</th>
     <td *matCellDef="let cryptocoins" mat-cell>

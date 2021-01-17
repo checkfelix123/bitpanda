@@ -1,28 +1,17 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {DataComponent} from './components/data/data.component';
-import {FiatComponent} from './components/data/fiat/fiat.component';
-import {CommoditiesComponent} from './components/data/commodities/commodities.component';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: DataComponent,
-    children: [
-      {
-        path: 'fiat',
-        component: FiatComponent
-      },
-      {
-        path: 'commodities',
-        component: CommoditiesComponent
-      },
-    ]
+    loadChildren: () => import('./components/data/data.module').then(m => m.DataModule)
   },
   {path: '**', redirectTo: ''}
 ];
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

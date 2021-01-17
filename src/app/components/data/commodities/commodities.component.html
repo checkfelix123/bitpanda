@@ -3,7 +3,7 @@
 <mat-toolbar xmlns="" xmlns="" xmlns="">
   <span>commonity</span>
 </mat-toolbar>
-<app-loading-screen></app-loading-screen>
+<app-loading-screen *ngIf="!isLoaded"></app-loading-screen>
 <table *ngIf="commoditiesAttribute.length > 0" [dataSource]="commoditiesAttribute" class="mat-elevation-z8" mat-table>
 
   <!-- Position Column -->
@@ -25,20 +25,7 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="min_withdraw_euro">
-    <th *matHeaderCellDef mat-header-cell>minimum withdraw</th>
-    <td *matCellDef="let commonity" mat-cell>
-        <span *ngIf="commonity.logo">
-          {{commonity.min_withdraw_euro | currency:'EUR' : 'symbol' : '.0-2' }}
-        </span>
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="min_deposit_euro">
-    <th *matHeaderCellDef mat-header-cell>minimum deposit</th>
-    <td *matCellDef="let commonity" mat-cell>
-      {{commonity.min_deposit_euro | currency:commonity.symbol : 'symbol' : '.0-' + commonity.precision   }}
-    </td>
-  </ng-container>
+
   <ng-container matColumnDef="logo">
     <th *matHeaderCellDef mat-header-cell> logo</th>
     <td *matCellDef="let commonity" mat-cell>

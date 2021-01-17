@@ -1,2 +1,37 @@
 <!--<mat-spinner *ngIf=""></mat-spinner>-->
-<p>indexes works!</p>
+
+<mat-toolbar>
+  <span>Indexes</span>
+</mat-toolbar>
+<app-loading-screen *ngIf="!isLoaded"></app-loading-screen>
+<table *ngIf="indexesAttributes.length > 0" [dataSource]="indexesAttributes" class="mat-elevation-z8" mat-table>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="currency">
+    <th *matHeaderCellDef mat-header-cell> currency</th>
+    <td *matCellDef="let indexes" mat-cell> {{indexes.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="sell amount">
+    <th *matHeaderCellDef mat-header-cell> sell amount</th>
+    <td *matCellDef="let indexes" mat-cell> {{indexes.default_sell_amount}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="transfer">
+    <th *matHeaderCellDef mat-header-cell> transfer</th>
+    <td *matCellDef="let indexes" mat-cell>
+        <span *ngIf="indexes.logo">
+            {{indexes.transfer_active}}
+        </span>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="logo">
+    <th *matHeaderCellDef mat-header-cell> logo</th>
+    <td *matCellDef="let indexes" mat-cell>
+        <span *ngIf="indexes.logo">
+            <img *ngIf="indexes.logo" alt="" src="{{indexes.logo}}">
+        </span>
+    </td>
+  </ng-container>
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
